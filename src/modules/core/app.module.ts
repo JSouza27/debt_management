@@ -17,7 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [],
-      synchronize: true, //TODO: REMOVER APÓS CRIAR AS MIGRATIONS
+      synchronize: process.env.ENV === 'development',
     }),
   ],
   controllers: [AppController],
