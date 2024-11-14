@@ -17,4 +17,18 @@ describe('CategoryController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  describe('create', () => {
+    it('should create a new category', () => {});
+
+    it('should return an object', () => {});
+  });
+
+  it('should list all categories', () => {});
+
+  it('should get a specific category', () => {});
+
+  it('should update an existing category', () => {});
+
+  it('should remove a category', () => {});
 });
