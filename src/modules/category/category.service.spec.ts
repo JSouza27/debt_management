@@ -55,6 +55,7 @@ describe('CategoryService', () => {
     it('should return an object', async () => {
       const resp = await service.create(categoryPayload);
 
+      expect(resp).toHaveProperty('id');
       expect(resp).toHaveProperty('name');
       expect(resp).toHaveProperty('description');
     });

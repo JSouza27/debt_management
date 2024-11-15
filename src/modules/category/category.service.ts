@@ -2,21 +2,22 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { CategoryRepository } from './repositories/category.repository';
-import { Category } from './entities/category.entity';
 import { FindParamsDto } from './dto/find-params.dto';
 
 @Injectable()
 export class CategoryService {
   constructor(private readonly repository: CategoryRepository) {}
 
-  public async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+  public async create(createCategoryDto: CreateCategoryDto) {
     const category = this.repository.create(createCategoryDto);
     return this.repository.save(category);
   }
 
   public async findAll(params: FindParamsDto) {
     const { limit, offset } = params;
+
     const [categories, total] = await this.repository.findAll(params);
+
     return {
       data: categories,
       metaData: {
