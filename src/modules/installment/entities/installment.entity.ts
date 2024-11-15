@@ -13,7 +13,7 @@ export class Installment {
   @ManyToOne(() => Debt, (debt) => debt.installments)
   debt: Debt;
 
-  @Column('number')
+  @Column()
   number_installment: number;
 
   @Column('decimal', { precision: 10, scale: 2 })

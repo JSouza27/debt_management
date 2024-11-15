@@ -1,10 +1,14 @@
-import { Repository } from 'typeorm';
-import { Category } from '@/modules/category/entities/category.entity';
-import { Injectable } from '@nestjs/common';
+import { DataSource, Repository } from 'typeorm';
+import { Category } from '../entities/category.entity';
 import { FindParamsDto } from '../dto/find-params.dto';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CategoryRepository extends Repository<Category> {
+  constructor(private dataSource: DataSource) {
+    super(Category, dataSource.manager);
+  }
+
   async findAll(params: FindParamsDto) {
     const { limit, offset } = params;
 

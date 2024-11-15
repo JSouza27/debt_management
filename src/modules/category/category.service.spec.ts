@@ -27,8 +27,9 @@ describe('CategoryService', () => {
                 listCategoryResponse.data,
                 listCategoryResponse.metaData.total,
               ]),
-            findOneByOrFail: jest.fn().mockResolvedValue(categoryResponse),
+            findOneBy: jest.fn().mockResolvedValue(categoryResponse),
             delete: jest.fn().mockResolvedValue({ affected: 1 }),
+            exists: jest.fn().mockResolvedValue(false),
           },
         },
       ],
@@ -58,6 +59,14 @@ describe('CategoryService', () => {
       expect(resp).toHaveProperty('id');
       expect(resp).toHaveProperty('name');
       expect(resp).toHaveProperty('description');
+    });
+
+    it('should return the message "A categoria já existe" if the category already exists', async () => {
+      jest.spyOn(repository, 'exists').mockResolvedValueOnce(true);
+
+      expect(service.create(categoryPayload)).rejects.toThrow(
+        'A categoria já existe',
+      );
     });
   });
 
@@ -106,7 +115,16 @@ describe('CategoryService', () => {
       const resp = await service.findOne('uuid-category-123');
 
       expect(resp).toEqual(categoryResponse);
-      expect(repository.findOneByOrFail).toHaveBeenCalled();
+      expect(repository.findOneBy).toHaveBeenCalled();
+    });
+
+    it('should return the message "A categoria informada não existe" when removing a non-existent category', async () => {
+      jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
+
+      expect(service.findOne('uuid-category-123')).rejects.toThrow(
+        'A categoria informada não existe',
+      );
+      expect(repository.findOneBy).toHaveBeenCalled();
     });
   });
 
@@ -137,6 +155,15 @@ describe('CategoryService', () => {
         removed: true,
       });
       expect(repository.delete).toHaveBeenCalled();
+    });
+
+    it('should return the message "A categoria informada não existe" when removing a non-existent category', async () => {
+      jest.spyOn(repository, 'findOneBy').mockResolvedValue(null);
+
+      expect(service.remove('uuid-category-123')).rejects.toThrow(
+        'A categoria informada não existe',
+      );
+      expect(repository.delete).not.toHaveBeenCalled();
     });
   });
 });

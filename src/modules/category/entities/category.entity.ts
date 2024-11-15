@@ -12,10 +12,10 @@ export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ unique: true, length: 150, nullable: false })
   name: string;
 
-  @Column()
+  @Column({ length: 200, nullable: false })
   description: string;
 
   @CreateDateColumn({ type: 'timestamptz', default: () => `now()` })

@@ -3,6 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoryModule } from '../category/category.module';
+import { Category } from '../category/entities/category.entity';
+import { Debt } from '../debt/entities/debt.entity';
+import { Installment } from '../installment/entities/installment.entity';
 
 @Module({
   imports: [
@@ -16,9 +20,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [],
+      entities: [Category, Debt, Installment],
       synchronize: process.env.ENV === 'development',
     }),
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
