@@ -21,7 +21,7 @@ export class Debt {
   @ManyToOne(() => Category, (category) => category.debts)
   category: Category;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @Column('decimal', { precision: 10, scale: 2 })
@@ -33,7 +33,7 @@ export class Debt {
   @CreateDateColumn({ type: 'timestamptz', default: () => `now()` })
   created_at: Date;
 
-  @Column({ type: 'timestamptz', default: null })
+  @Column({ type: 'timestamptz' })
   due_date: Date;
 
   @Column({ type: 'enum', enum: DebtStatus, default: DebtStatus.ACTIVE })

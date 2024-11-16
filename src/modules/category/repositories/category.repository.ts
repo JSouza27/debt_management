@@ -9,7 +9,7 @@ export class CategoryRepository extends Repository<Category> {
     super(Category, dataSource.manager);
   }
 
-  async findAll(params: FindParamsDto) {
+  public async findAll(params: FindParamsDto) {
     const { limit, offset } = params;
 
     const queryBuilder = this.createQueryBuilder('category')

@@ -13,7 +13,7 @@ import { CreateCategoryDTO } from './dto/create-category.dto';
 import { UpdateCategoryDTO } from './dto/update-category.dto';
 import { FindParamsDto } from './dto/find-params.dto';
 
-@Controller('/api/category')
+@Controller('/api/categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
