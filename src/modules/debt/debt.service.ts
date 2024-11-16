@@ -49,7 +49,7 @@ export class DebtService {
 
       if (!debt) {
         throw new HttpException(
-          'A divída informada não existe',
+          'A dívida informada não existe',
           HttpStatus.NOT_FOUND,
         );
       }

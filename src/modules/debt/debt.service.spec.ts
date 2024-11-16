@@ -4,12 +4,11 @@ import { DebtRepository } from './repositories/debt.repository';
 import {
   debtPayload,
   debtResponse,
+  debtUpdated,
   listDebtResponse,
 } from '../../../test/__mocks__/debt.mock';
 import { CategoryService } from '../category/category.service';
 import { categoryResponse } from '../../../test/__mocks__/category.mock';
-import { Category } from '../category/entities/category.entity';
-import { Installment } from '../installment/entities/installment.entity';
 
 describe('DebtService', () => {
   let service: DebtService;
@@ -81,11 +80,11 @@ describe('DebtService', () => {
       expect(repository.findOneBy).toHaveBeenCalled();
     });
 
-    it('should return the error "A divída informada não existe" if it does not find the division of the id entered', async () => {
+    it('should return the error "A dívida informada não existe" if it does not find the division of the id entered', async () => {
       jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
 
       expect(service.findOne('uuid-debt')).rejects.toThrow(
-        'A divída informada não existe',
+        'A dívida informada não existe',
       );
       expect(repository.findOneBy).toHaveBeenCalled();
     });
@@ -93,12 +92,6 @@ describe('DebtService', () => {
 
   describe('update', () => {
     it('should update the division of the id entered', async () => {
-      const debtUpdated = Object.assign(debtResponse, {
-        total_amount: 4000.0,
-        category: new Category(),
-        installments: [new Installment()],
-      });
-
       jest.spyOn(repository, 'save').mockResolvedValueOnce(debtUpdated);
       const resp = await service.update('uuid-debt', { total_amount: 4000.0 });
 
@@ -110,7 +103,7 @@ describe('DebtService', () => {
       jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
 
       expect(service.remove('uuid-debt')).rejects.toThrow(
-        'A divída informada não existe',
+        'A dívida informada não existe',
       );
       expect(repository.save).not.toHaveBeenCalled();
     });
@@ -128,7 +121,7 @@ describe('DebtService', () => {
       jest.spyOn(repository, 'findOneBy').mockResolvedValueOnce(null);
 
       expect(service.remove('uuid-debt')).rejects.toThrow(
-        'A divída informada não existe',
+        'A dívida informada não existe',
       );
       expect(repository.delete).not.toHaveBeenCalled();
     });

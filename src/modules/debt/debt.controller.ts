@@ -10,33 +10,37 @@ import {
 import { DebtService } from './debt.service';
 import { CreateDebtDTO } from './dto/create-debt.dto';
 import { UpdateDebtDTO } from './dto/update-debt.dto';
+import { FindParamsDTO } from './dto/find-params.dto';
 
-@Controller('debt')
+@Controller('/api/debts')
 export class DebtController {
   constructor(private readonly debtService: DebtService) {}
 
   @Post()
-  create(@Body() createDebtDto: CreateDebtDTO) {
+  public async create(@Body() createDebtDto: CreateDebtDTO) {
     return this.debtService.create(createDebtDto);
   }
 
   @Get()
-  findAll(params) {
+  public async findAll(params: FindParamsDTO) {
     return this.debtService.findAll(params);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  public async findOne(@Param('id') id: string) {
     return this.debtService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDebtDto: UpdateDebtDTO) {
+  public async update(
+    @Param('id') id: string,
+    @Body() updateDebtDto: UpdateDebtDTO,
+  ) {
     return this.debtService.update(id, updateDebtDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.debtService.remove(+id);
+  public async remove(@Param('id') id: string) {
+    return this.debtService.remove(id);
   }
 }

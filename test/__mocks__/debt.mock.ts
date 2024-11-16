@@ -1,4 +1,6 @@
 import { DebtStatus } from '../../src/common/enums';
+import { Category } from '../../src/modules/category/entities/category.entity';
+import { Installment } from '../../src/modules/installment/entities/installment.entity';
 
 export const debtPayload = {
   name: 'Visa Card',
@@ -59,3 +61,9 @@ export const listDebtResponse = {
     limit: 10,
   },
 };
+
+export const debtUpdated = Object.assign(debtResponse, {
+  total_amount: 4000.0,
+  category: new Category(),
+  installments: [new Installment()],
+});
