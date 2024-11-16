@@ -9,8 +9,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDTO } from './dto/create-category.dto';
+import { UpdateCategoryDTO } from './dto/update-category.dto';
 import { FindParamsDto } from './dto/find-params.dto';
 
 @Controller('/api/category')
@@ -18,7 +18,7 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-  public async create(@Body() createCategoryDto: CreateCategoryDto) {
+  public async create(@Body() createCategoryDto: CreateCategoryDTO) {
     return this.categoryService.create(createCategoryDto);
   }
 
@@ -35,7 +35,7 @@ export class CategoryController {
   @Patch(':id')
   public async update(
     @Param('id') id: string,
-    @Body() updateCategoryDto: UpdateCategoryDto,
+    @Body() updateCategoryDto: UpdateCategoryDTO,
   ) {
     return this.categoryService.update(id, updateCategoryDto);
   }

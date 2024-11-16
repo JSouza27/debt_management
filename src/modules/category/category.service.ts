@@ -5,8 +5,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDTO } from './dto/create-category.dto';
+import { UpdateCategoryDTO } from './dto/update-category.dto';
 import { CategoryRepository } from './repositories/category.repository';
 import { FindParamsDto } from './dto/find-params.dto';
 
@@ -22,7 +22,7 @@ export class CategoryService {
     }
   }
 
-  public async create(createCategoryDto: CreateCategoryDto) {
+  public async create(createCategoryDto: CreateCategoryDTO) {
     await this.categoryCheckExist(createCategoryDto.name);
 
     try {
@@ -71,7 +71,7 @@ export class CategoryService {
     }
   }
 
-  public async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+  public async update(id: string, updateCategoryDto: UpdateCategoryDTO) {
     const category = await this.findOne(id);
 
     try {
