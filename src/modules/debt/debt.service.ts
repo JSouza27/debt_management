@@ -18,29 +18,49 @@ export class DebtService {
     private readonly categoryService: CategoryService,
   ) {}
 
-  public async create(createDebtDto: CreateDebtDTO) {
-    const category = await this.categoryService.findOne(
-      createDebtDto.category_id,
-    );
-    const debt = await this.repository.create(
-      Object.assign(createDebtDto, category),
-    );
+  protected async debtCheckExist(name: string) {
+    const isExist = await this.repository.exists({ where: { name } });
 
-    return this.repository.save(debt);
+    if (isExist) {
+      throw new BadRequestException(
+        'Já existe uma dívida com esse nome cadastrado',
+      );
+    }
+  }
+
+  public async create(createDebtDto: CreateDebtDTO) {
+    await this.debtCheckExist(createDebtDto.name);
+
+    try {
+      const category = await this.categoryService.findOne(
+        createDebtDto.category_id,
+      );
+      const debt = await this.repository.create(
+        Object.assign(createDebtDto, category),
+      );
+
+      return this.repository.save(debt);
+    } catch (e) {
+      throw new BadRequestException(e);
+    }
   }
 
   public async findAll(params: FindParamsDTO) {
-    const { limit, offset } = params;
-    const [debts, total] = await this.repository.findAll(params);
+    try {
+      const { limit, offset } = params;
+      const [debts, total] = await this.repository.findAll(params);
 
-    return {
-      data: debts,
-      metaData: {
-        offset,
-        total,
-        limit,
-      },
-    };
+      return {
+        data: debts,
+        metaData: {
+          offset,
+          total,
+          limit,
+        },
+      };
+    } catch (e) {
+      throw new BadRequestException(e);
+    }
   }
 
   public async findOne(id: string) {

@@ -32,6 +32,7 @@ describe('DebtService', () => {
               ]),
             findOneBy: jest.fn().mockResolvedValue(debtResponse),
             delete: jest.fn().mockResolvedValue({ affected: 1 }),
+            exists: jest.fn().mockResolvedValue(false),
           },
         },
         {
@@ -60,6 +61,14 @@ describe('DebtService', () => {
 
       expect(resp).toEqual(debtResponse);
       expect(repository.save).toHaveBeenCalled();
+    });
+
+    it('should return an error message if the debt already exists', async () => {
+      jest.spyOn(repository, 'exists').mockResolvedValueOnce(true);
+
+      expect(service.create(debtPayload)).rejects.toThrow(
+        'Já existe uma dívida com esse nome cadastrado',
+      );
     });
   });
 
