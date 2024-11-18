@@ -35,7 +35,7 @@ export class CategoryService {
 
   public async findAll(params: FindParamsDto) {
     try {
-      const { limit, offset } = params;
+      const { limit, page } = params;
 
       const [categories, total] = await this.repository.findAll(params);
 
@@ -43,7 +43,7 @@ export class CategoryService {
         data: categories,
         metaData: {
           limit,
-          offset,
+          page,
           total,
         },
       };

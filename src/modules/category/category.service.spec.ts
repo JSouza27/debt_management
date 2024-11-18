@@ -72,39 +72,39 @@ describe('CategoryService', () => {
 
   describe('findAll', () => {
     it('should list all categories', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp).toEqual(listCategoryResponse);
       expect(repository.findAll).toHaveBeenCalled();
     });
 
     it('should return an object', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp).toHaveProperty('data');
       expect(resp).toHaveProperty('metaData');
     });
 
     it('data should be an array', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp.data).toHaveLength(2);
     });
 
     it('should show the limit', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp.metaData).toHaveProperty('limit', 10);
     });
 
-    it('should show the offset', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+    it('should show the page', async () => {
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
-      expect(resp.metaData).toHaveProperty('offset', 1);
+      expect(resp.metaData).toHaveProperty('page', 1);
     });
 
     it('should show the total', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp.metaData).toHaveProperty('total', 2);
     });

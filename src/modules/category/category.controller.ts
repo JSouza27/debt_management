@@ -26,7 +26,7 @@ export class CategoryController {
   public async findAll(@Query() params: FindParamsDto) {
     return this.categoryService.findAll({
       limit: Number(params.limit),
-      offset: Number(params.offset),
+      page: Number(params.page),
     });
   }
 

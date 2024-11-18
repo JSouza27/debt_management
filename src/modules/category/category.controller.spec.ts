@@ -63,7 +63,7 @@ describe('CategoryController', () => {
 
   describe('findAll', () => {
     it('should list all categories', async () => {
-      const resp = await controller.findAll({ limit: 10, offset: 1 });
+      const resp = await controller.findAll({ limit: 10, page: 1 });
 
       expect(resp).toEqual(listCategoryResponse);
       expect(service.findAll).toHaveBeenCalled();

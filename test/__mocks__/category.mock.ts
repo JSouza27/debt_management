@@ -33,7 +33,7 @@ export const listCategoryResponse = {
     },
   ],
   metaData: {
-    offset: 1,
+    page: 1,
     total: 2,
     limit: 10,
   },

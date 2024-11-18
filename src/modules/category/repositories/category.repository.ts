@@ -10,12 +10,12 @@ export class CategoryRepository extends Repository<Category> {
   }
 
   public async findAll(params: FindParamsDto) {
-    const { limit, offset } = params;
+    const { limit, page } = params;
 
     const queryBuilder = this.createQueryBuilder('category')
       .orderBy('category.name', 'ASC')
-      .limit(limit)
-      .offset(offset);
+      .skip((page - 1) * limit)
+      .take(limit);
 
     return queryBuilder.getManyAndCount();
   }

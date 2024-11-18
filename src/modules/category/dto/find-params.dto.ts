@@ -7,7 +7,7 @@ export class FindParamsDto {
   limit: number;
 
   // @IsNumber()
-  // @IsPositive({ message: '"offset" deve ser um numero positivo' })
-  // @Min(1, { message: '"offset" não pode ser menos que 1' })
-  offset: number;
+  // @IsPositive({ message: '"page" deve ser um numero positivo' })
+  // @Min(1, { message: '"page" não pode ser menos que 1' })
+  page: number;
 }
