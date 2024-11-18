@@ -35,9 +35,7 @@ export class DebtService {
       const category = await this.categoryService.findOne(
         createDebtDto.category_id,
       );
-      const debt = await this.repository.create(
-        Object.assign(createDebtDto, category),
-      );
+      const debt = this.repository.create({ ...createDebtDto, category });
 
       return this.repository.save(debt);
     } catch (e) {
@@ -47,13 +45,17 @@ export class DebtService {
 
   public async findAll(params: FindParamsDTO) {
     try {
-      const { limit, offset } = params;
+      const { limit, page } = params;
       const [debts, total] = await this.repository.findAll(params);
 
       return {
-        data: debts,
+        data: debts.map((debt) => ({
+          ...debt,
+          amount_paid: parseFloat(debt.amount_paid as any),
+          total_amount: parseFloat(debt.total_amount as any),
+        })),
         metaData: {
-          offset,
+          page,
           total,
           limit,
         },
@@ -74,6 +76,9 @@ export class DebtService {
         );
       }
 
+      debt['amount_paid'] = parseFloat(debt.amount_paid as any);
+      debt['total_amount'] = parseFloat(debt.total_amount as any);
+
       return debt;
     } catch (e) {
       if (e.status === 404) throw new NotFoundException(e.response);
@@ -89,6 +94,9 @@ export class DebtService {
       const debtUpdated = await this.repository.save(
         Object.assign(debt, updateDebtDto),
       );
+
+      debtUpdated['amount_paid'] = parseFloat(debt.amount_paid as any);
+      debtUpdated['total_amount'] = parseFloat(debt.total_amount as any);
 
       return { data: debtUpdated, updated: true };
     } catch (e) {

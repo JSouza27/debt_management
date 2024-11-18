@@ -74,7 +74,7 @@ describe('DebtService', () => {
 
   describe('findAll', () => {
     it('should return all debts', async () => {
-      const resp = await service.findAll({ limit: 10, offset: 1 });
+      const resp = await service.findAll({ limit: 10, page: 1 });
 
       expect(resp).toEqual(listDebtResponse);
       expect(repository.findAll).toHaveBeenCalled();

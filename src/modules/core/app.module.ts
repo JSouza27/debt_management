@@ -7,6 +7,7 @@ import { CategoryModule } from '../category/category.module';
 import { Category } from '../category/entities/category.entity';
 import { Debt } from '../debt/entities/debt.entity';
 import { Installment } from '../installment/entities/installment.entity';
+import { DebtModule } from '../debt/debt.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Installment } from '../installment/entities/installment.entity';
       synchronize: process.env.ENV === 'development',
     }),
     CategoryModule,
+    DebtModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,13 +10,13 @@ export class DebtRepository extends Repository<Debt> {
   }
 
   public async findAll(params: FindParamsDTO) {
-    const { limit, offset } = params;
+    const { limit, page } = params;
 
-    const queryBuilder = await this.createQueryBuilder('debt')
+    const queryBuilder = this.createQueryBuilder('debt')
       .leftJoinAndSelect('debt.category', 'category')
       .orderBy('debt.due_date', 'ASC')
-      .limit(limit)
-      .offset(offset);
+      .skip((page - 1) * limit)
+      .take(limit);
 
     return queryBuilder.getManyAndCount();
   }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { DebtService } from './debt.service';
 import { CreateDebtDTO } from './dto/create-debt.dto';
@@ -22,8 +23,11 @@ export class DebtController {
   }
 
   @Get()
-  public async findAll(params: FindParamsDTO) {
-    return this.debtService.findAll(params);
+  public async findAll(@Query() params: FindParamsDTO) {
+    return this.debtService.findAll({
+      limit: Number(params.limit),
+      page: Number(params.page),
+    });
   }
 
   @Get(':id')

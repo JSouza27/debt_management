@@ -5,6 +5,6 @@ export enum InstallmentStatus {
 
 export enum DebtStatus {
   ACTIVE = 'Active',
-  SETTLED = 'Settled',
+  PAYD_OFF = 'Paid off',
   OVERDUE = 'Overdue',
 }

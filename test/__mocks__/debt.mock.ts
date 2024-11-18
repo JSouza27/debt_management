@@ -6,6 +6,7 @@ export const debtPayload = {
   name: 'Visa Card',
   category_id: 'uuid-category',
   total_amount: 5000.0,
+  amount_paid: 0.0,
   due_date: new Date('2024-12-15'),
 };
 
@@ -56,7 +57,7 @@ export const listDebtResponse = {
     },
   ],
   metaData: {
-    offset: 1,
+    page: 1,
     total: 2,
     limit: 10,
   },
