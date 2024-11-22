@@ -15,10 +15,12 @@ export const debtResponse = {
   name: 'Visa Card',
   category_id: 'uuid-category',
   total_amount: 5000.0,
-  amount_paid: 0.0,
+  amount_paid: 0,
   created_at: new Date('2024-11-08'),
   due_date: new Date('2024-12-15'),
   status: DebtStatus.ACTIVE,
+  category: new Category(),
+  installments: [new Installment()],
 };
 
 export const listDebtResponse = {
