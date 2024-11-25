@@ -8,6 +8,7 @@ import { Category } from '../category/entities/category.entity';
 import { Debt } from '../debt/entities/debt.entity';
 import { Installment } from '../installment/entities/installment.entity';
 import { DebtModule } from '../debt/debt.module';
+import { InstallmentModule } from '../installment/installment.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { DebtModule } from '../debt/debt.module';
     }),
     CategoryModule,
     DebtModule,
+    InstallmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

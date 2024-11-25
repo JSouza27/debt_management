@@ -10,5 +10,6 @@ import { CategoryModule } from '../category/category.module';
   imports: [TypeOrmModule.forFeature([Debt]), forwardRef(() => CategoryModule)],
   controllers: [DebtController],
   providers: [DebtService, DebtRepository],
+  exports: [DebtService],
 })
 export class DebtModule {}

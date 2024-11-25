@@ -71,6 +71,8 @@ describe('InstallmentService', () => {
       expect(resp).toEqual(installmentResponse2);
       expect(repository.save).toHaveBeenCalled();
     });
+
+    it('should return an error if the total of installments is different from the total amount to be paid', async () => {});
   });
 
   describe('findAll', () => {
