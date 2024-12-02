@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Debt } from '@/modules/debt/entities/debt.entity';
 import { InstallmentStatus } from '@/common/enums';
 
-@Entity()
+@Entity('installments')
 export class Installment {
   @PrimaryGeneratedColumn('uuid')
   id: string;

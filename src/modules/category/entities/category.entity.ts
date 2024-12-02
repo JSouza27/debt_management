@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { Debt } from '@/modules/debt/entities/debt.entity';
 
-@Entity()
+@Entity('categories')
 export class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;

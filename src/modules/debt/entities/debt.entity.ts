@@ -10,7 +10,7 @@ import { Category } from '@/modules/category/entities/category.entity';
 import { DebtStatus } from '@/common/enums';
 import { Installment } from '@/modules/installment/entities/installment.entity';
 
-@Entity()
+@Entity('debts')
 export class Debt {
   @PrimaryGeneratedColumn('uuid')
   id: string;
