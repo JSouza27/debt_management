@@ -1,4 +1,4 @@
-import { InstallmentStatus } from '../../src/common/enums';
+import { InstallmentStatus } from '../../src/common/enums/enums';
 import { debtResponse } from './debt.mock';
 
 export const installmentPayload = {

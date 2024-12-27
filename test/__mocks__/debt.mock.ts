@@ -1,4 +1,4 @@
-import { DebtStatus } from '../../src/common/enums';
+import { DebtStatus } from '../../src/common/enums/enums';
 import { Category } from '../../src/modules/category/entities/category.entity';
 import { Installment } from '../../src/modules/installment/entities/installment.entity';
 

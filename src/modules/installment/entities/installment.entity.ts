@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Debt } from '@/modules/debt/entities/debt.entity';
-import { InstallmentStatus } from '@/common/enums';
+import { InstallmentStatus } from '@/common/enums/enums';
 
 @Entity('installments')
 export class Installment {

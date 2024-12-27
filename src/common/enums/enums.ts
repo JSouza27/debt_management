@@ -8,3 +8,8 @@ export enum DebtStatus {
   PAYD_OFF = 'Paid off',
   OVERDUE = 'Overdue',
 }
+
+export enum OrderBy {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}

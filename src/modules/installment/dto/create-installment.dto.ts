@@ -7,7 +7,7 @@ import {
   IsUUID,
   Min,
 } from 'class-validator';
-import { InstallmentStatus } from '../../../common/enums';
+import { InstallmentStatus } from '../../../common/enums/enums';
 
 export class CreateInstallmentDto {
   @IsUUID('4', { message: 'O campo "debt_id" precisa ser um UUUID' })

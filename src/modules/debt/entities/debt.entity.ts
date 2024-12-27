@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from '@/modules/category/entities/category.entity';
-import { DebtStatus } from '@/common/enums';
+import { DebtStatus } from '@/common/enums/enums';
 import { Installment } from '@/modules/installment/entities/installment.entity';
 
 @Entity('debts')

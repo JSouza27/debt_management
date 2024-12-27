@@ -9,6 +9,8 @@ import { Debt } from '../debt/entities/debt.entity';
 import { Installment } from '../installment/entities/installment.entity';
 import { DebtModule } from '../debt/debt.module';
 import { InstallmentModule } from '../installment/installment.module';
+import { UserModule } from '../user/user.module';
+import { User } from '../user/entities/user.entity';
 
 @Module({
   imports: [
@@ -22,12 +24,13 @@ import { InstallmentModule } from '../installment/installment.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Category, Debt, Installment],
+      entities: [Category, Debt, Installment, User],
       synchronize: process.env.ENV === 'development',
     }),
     CategoryModule,
     DebtModule,
     InstallmentModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
