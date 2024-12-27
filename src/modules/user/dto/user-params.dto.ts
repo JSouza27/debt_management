@@ -1,15 +1,14 @@
-import { IsEnum, IsNumber, IsPositive } from 'class-validator';
+import { IsEnum, IsNotEmpty } from 'class-validator';
 import { OrderBy } from '../../../common/enums/enums';
 
 export class UserParamsDTO {
-  @IsNumber({}, { message: 'Limit deve ser um número' })
-  @IsPositive({ message: 'Limit deve ser um número positivo' })
+  @IsNotEmpty({ message: 'Limit é obrigatório' })
   limit: number;
 
-  @IsNumber({}, { message: 'Offset deve ser um número' })
-  @IsPositive({ message: 'Offset deve ser um número positivo' })
+  @IsNotEmpty({ message: 'Offset é obrigatório' })
   offset: number;
 
+  @IsNotEmpty({ message: 'Order by é obrigatório' })
   @IsEnum(OrderBy, { message: 'Order by deve ser ASC ou DESC' })
-  order_by: string;
+  order_by_sort: string;
 }

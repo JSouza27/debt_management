@@ -24,6 +24,9 @@ export class UserController {
 
   @Get()
   public async findAll(@Query() params: UserParamsDTO) {
+    params.offset = Number(params.offset);
+    params.limit = Number(params.limit);
+
     return this.userService.findAll(params);
   }
 
